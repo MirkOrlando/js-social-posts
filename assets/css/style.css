@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+}
+
 body {
   background-color: cornflowerblue;
 }
@@ -11,4 +15,56 @@ body {
 .container {
   width: 1200px;
   margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 1rem;
+  width: 500px;
+}
+
+.author {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.propic_container {
+  width: 50px;
+}
+
+.nickname_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.date {
+  font-size: 0.75rem;
+}
+
+.propic_container img {
+  border-radius: 50%;
+}
+
+.like_action {
+  display: flex;
+}
+
+.btn_like,
+.likes_counter {
+  width: calc(100% / 2);
+  text-align: center;
+}
+
+.n_likes {
+  font-weight: bold;
 }
