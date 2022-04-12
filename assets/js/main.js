@@ -28,41 +28,41 @@ const posts = [
   {
     id: 2,
     nicknameAuthor: "Stefano Russo",
-    proPicAuthor: "https://picsum.photos/300",
+    proPicAuthor: "https://picsum.photos/200",
     date: "04/10/2022",
     caption:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/300",
+    image: "",
     likes: 275,
   },
   {
     id: 3,
     nicknameAuthor: "Matteo Gramegna",
-    proPicAuthor: "https://picsum.photos/300",
+    proPicAuthor: "https://picsum.photos/350",
     date: "04/07/2022",
     caption:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/300",
+    image: "",
     likes: 184,
   },
   {
     id: 4,
     nicknameAuthor: "Lucia Verdi",
-    proPicAuthor: "https://picsum.photos/300",
+    proPicAuthor: "https://picsum.photos/800",
     date: "03/31/2022",
     caption:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/300",
+    image: "https://picsum.photos/600/400",
     likes: 98,
   },
   {
     id: 5,
     nicknameAuthor: "Clara Bianchi",
-    proPicAuthor: "https://picsum.photos/300",
+    proPicAuthor: "https://picsum.photos/90",
     date: "03/27/2022",
     caption:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/300",
+    image: "https://picsum.photos/600/350",
     likes: 67,
   },
 ];
@@ -89,34 +89,39 @@ function generatePosts(list, containerSelector) {
   list.forEach((element) => {
     // 3. creare la card del post
     const cardElement = `
-            <div class="card">
-                <div class="author">
-                    <div class="propic_container">
-                        <img src="${element.proPicAuthor}" alt="" />
-                    </div>   
-                    <div class="nickname_container">
-                        <div class="nickname">${element.nicknameAuthor}</div>
-                        <div class="date">${element.date}</div>
-                    </div>
-                </div>
-                <div class="caption">${element.caption}</div>
-                <img src="${element.image}" alt="" />
-                <div class="like_action">
-                    <div class="col">
-                        <div class="btn_like">
-                            <i class="fa-solid fa-thumbs-up"></i> Mi Piace
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="likes_counter">
-                            Piace a <span class="n_likes">${element.likes}</span> persone
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+              <div class="card">
+                  <div class="author">
+                      <div class="propic_container">
+                          <img src="${element.proPicAuthor}" alt="" />
+                      </div>   
+                      <div class="nickname_container">
+                          <div class="nickname">${element.nicknameAuthor}</div>
+                          <div class="date">${element.date}</div>
+                      </div>
+                  </div>
+                  <div class="caption">${element.caption}</div>
+                  <img src="${element.image}" alt="" />
+                  <div class="like_action">
+                      <div class="col">
+                          <div class="btn_like">
+                              <i class="fa-solid fa-thumbs-up"></i> Mi Piace
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="likes_counter">
+                              Piace a <span class="n_likes">${element.likes}</span> persone
+                          </div>
+                      </div>
+                  </div>
+              </div>`;
     // 4. appendere le card nel container
     containerElement.insertAdjacentHTML("beforeend", cardElement);
   });
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card, i) => {
+    card.postId = list[i].id;
+  });
+  //console.log(cards);
 }
 
 /*
@@ -125,6 +130,36 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
 del bottone e incrementiamo il counter dei likes relativo. 
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
+const postLiked = [];
+const cards = document.querySelectorAll(".card");
+console.log(cards);
+cards.forEach((card) => {
+  //console.log(card.children[3].children[0].children[0]);
+  const btnlike = card.children[3].children[0].children[0];
+  //console.log(card.children[3].children[1].children[0].children[0]);
+  const likeCounter = card.children[3].children[1].children[0].children[0];
+  const id = card.postId;
+  btnlike.addEventListener("click", (e) => {
+    //console.log("hai cliccato like");
+    //console.log(btn);
+    btnlike.classList.add("liked");
+    likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
+    console.log(id);
+    postLiked.push[id];
+  });
+});
+
+/* const btnLikeElement = document.querySelectorAll(".btn_like");
+console.log(btnLikeElement);
+btnLikeElement.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    //console.log("hai cliccato like");
+    //console.log(btn);
+    btn.classList.add("liked");
+    const likes = document.querySelector(".n_likes");
+    likes.innerHTML = parseInt(likes.innerHTML) + 1;
+  });
+}); */
 
 /* 
 BONUS

@@ -66,6 +66,22 @@ body {
   text-align: center;
 }
 
+.btn_like {
+  /* display: inline-block; */
+  cursor: pointer;
+  user-select: none;
+  /* padding: 0.5rem 1rem;
+  background-color: lightgrey; */
+}
+
+.likes_counter {
+  user-select: none;
+}
+
 .n_likes {
   font-weight: bold;
+}
+
+.liked {
+  color: blue;
 }
