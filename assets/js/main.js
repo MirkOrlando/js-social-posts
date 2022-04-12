@@ -88,6 +88,8 @@ function generatePosts(list, containerSelector) {
   // 2. ciclare l'array per lavorare su ogni singolo post
   list.forEach((element) => {
     // 3. creare la card del post
+    const italianDate = dateFormatter(element.date);
+    console.log(italianDate);
     const cardElement = `
               <div class="card">
                   <div class="author">
@@ -96,7 +98,7 @@ function generatePosts(list, containerSelector) {
                       </div>   
                       <div class="nickname_container">
                           <div class="nickname">${element.nicknameAuthor}</div>
-                          <div class="date">${element.date}</div>
+                          <div class="date">${italianDate}</div>
                       </div>
                   </div>
                   <div class="caption">${element.caption}</div>
@@ -130,34 +132,65 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
 del bottone e incrementiamo il counter dei likes relativo. 
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
-let postLiked = [];
-const cards = document.querySelectorAll(".card");
-//console.log(cards);
-cards.forEach((card) => {
-  //console.log(card.children[3].children[0].children[0]);
-  const btnlike = card.children[3].children[0].children[0];
-  //console.log(card.children[3].children[1].children[0].children[0]);
-  const likeCounter = card.children[3].children[1].children[0].children[0];
-  const id = card.postId;
-  //console.log(typeof id);
-  btnlike.addEventListener("click", (e) => {
-    //console.log("hai cliccato like");
-    //console.log(btn);
-    btnlike.classList.add("liked");
-    likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
-    //console.log(id);
-    if (!postLiked.includes(id)) {
-      postLiked.push(id);
-    }
-    console.log(postLiked);
-  });
-});
+const postLiked = likeAPost(".card");
 
+/**
+ *
+ * @param {string} postSelector a string to select the post to like
+ * @returns {array} a list of posts liked
+ */
+function likeAPost(postSelector) {
+  const postLiked = [];
+  const cards = document.querySelectorAll(postSelector);
+  //console.log(cards);
+  cards.forEach((card) => {
+    //console.log(card.children[3].children[0].children[0]);
+    const btnlike = card.children[3].children[0].children[0];
+    //console.log(card.children[3].children[1].children[0].children[0]);
+    const likeCounter = card.children[3].children[1].children[0].children[0];
+    const id = card.postId;
+    //console.log(typeof id);
+    btnlike.addEventListener("click", (e) => {
+      //console.log("hai cliccato like");
+      //console.log(btn);
+      btnlike.classList.add("liked");
+      likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
+      //console.log(id);
+      if (!postLiked.includes(id)) {
+        postLiked.push(id);
+      }
+      console.log(postLiked);
+    });
+  });
+  return postLiked;
+}
+
+/*
+BONUS 1
+Formattare le date in formato italiano (gg/mm/aaaa)
+*/
+//creo una funzione per formattare la data da utilizzare al momento in cui genero la card
+/**
+ * formats the date as italian format
+ * @param {string} dateString a string that rapresents a date
+ */
+function dateFormatter(dateString) {
+  const mm = dateString.split("/")[0];
+  console.log(mm);
+  const dd = dateString.split("/")[1];
+  const yyyy = dateString.split("/")[2];
+  return (newdate = `${dd}/${mm}/${yyyy}`);
+}
+//const date = "03/31/2022";
+//console.log(dateFormatter(date));
+
+/*
+BONUS 2
+Gestire l'assenza dell'immagine profilo con un elemento di fallback 
+che contiene le iniziali dell'utente (es. Luca Formicola > LF). 
+*/
 /* 
-BONUS
-1) Formattare le date in formato italiano (gg/mm/aaaa)
-2) Gestire l'assenza dell'immagine profilo con un elemento di fallback 
-    che contiene le iniziali dell'utente (es. Luca Formicola > LF).
-3) Al click su un pulsante "Mi Piace" di un post, 
-    se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+BONUS 3
+Al click su un pulsante "Mi Piace" di un post, 
+se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 */
