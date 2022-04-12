@@ -74,37 +74,50 @@ Milestone 2
 Prendendo come riferimento il layout di esempio presente nell'html,
 stampiamo i post del nostro feed.
 */
-// 1. inizializzare la variabile per l'elemento della dom in cui
-//      verrà inserito il post
-const containerElement = document.querySelector(".container");
-// 2. ciclare l'array per lavorare su ogni singolo post
-posts.forEach((post) => {
-  // 3. creare la card del post
-  const cardElement = `
-        <div class="card">
-            <div class="author">
-                <div class="propic_container">
-                    <img src="${post.proPicAuthor}" alt="" />
-                </div>   
-                <div class="nickname_container">
-                    <div class="nickname">${post.nicknameAuthor}</div>
-                    <div class="date">${post.date}</div>
+generatePosts(posts, ".container");
+
+/**
+ * Generates the posts
+ * @param {array} list an array of the posts to be generated
+ * @param {string} containerSelector a string to select the container of the posts
+ */
+function generatePosts(list, containerSelector) {
+  // 1. inizializzare la variabile per l'elemento della dom in cui
+  //      verrà inserito il post
+  const containerElement = document.querySelector(containerSelector);
+  // 2. ciclare l'array per lavorare su ogni singolo post
+  list.forEach((element) => {
+    // 3. creare la card del post
+    const cardElement = `
+            <div class="card">
+                <div class="author">
+                    <div class="propic_container">
+                        <img src="${element.proPicAuthor}" alt="" />
+                    </div>   
+                    <div class="nickname_container">
+                        <div class="nickname">${element.nicknameAuthor}</div>
+                        <div class="date">${element.date}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="caption">${post.caption}</div>
-            <img src="${post.image}" alt="" />
-            <div class="like_action">
-                <div class="btn_like">
-                    <i class="fa-solid fa-thumbs-up"></i> Mi Piace
+                <div class="caption">${element.caption}</div>
+                <img src="${element.image}" alt="" />
+                <div class="like_action">
+                    <div class="col">
+                        <div class="btn_like">
+                            <i class="fa-solid fa-thumbs-up"></i> Mi Piace
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="likes_counter">
+                            Piace a <span class="n_likes">${element.likes}</span> persone
+                        </div>
+                    </div>
                 </div>
-                <div class="likes_counter">
-                    Piace a <span class="n_likes">${post.likes}</span> persone
-                </div>
-            </div>
-        </div>`;
-  // 5. appendere le card nel container
-  containerElement.insertAdjacentHTML("beforeend", cardElement);
-});
+            </div>`;
+    // 4. appendere le card nel container
+    containerElement.insertAdjacentHTML("beforeend", cardElement);
+  });
+}
 
 /*
 Milestone 3
