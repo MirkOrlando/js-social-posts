@@ -15,56 +15,51 @@ ad es. Unsplash (https://unsplash.it/300/300?image=)
 */
 
 const posts = [
-  {
-    id: 1,
-    nicknameAuthor: "Mirko Orlando",
-    proPicAuthor: "",
-    date: "04/12/2022",
-    caption:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/300",
-    likes: 22,
-  },
-  {
-    id: 2,
-    nicknameAuthor: "Stefano Russo",
-    proPicAuthor: "https://picsum.photos/200",
-    date: "04/10/2022",
-    caption:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "",
-    likes: 275,
-  },
-  {
-    id: 3,
-    nicknameAuthor: "Matteo Gramegna",
-    proPicAuthor: "https://picsum.photos/350",
-    date: "04/07/2022",
-    caption:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "",
-    likes: 184,
-  },
-  {
-    id: 4,
-    nicknameAuthor: "Lucia Verdi",
-    proPicAuthor: "https://picsum.photos/800",
-    date: "03/31/2022",
-    caption:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/400",
-    likes: 98,
-  },
-  {
-    id: 5,
-    nicknameAuthor: "Clara Bianchi",
-    proPicAuthor: "https://picsum.photos/90",
-    date: "03/27/2022",
-    caption:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
-    image: "https://picsum.photos/600/350",
-    likes: 67,
-  },
+    {
+        id: 1,
+        nicknameAuthor: "Mirko Orlando",
+        proPicAuthor: "https://picsum.photos/200",
+        date: "04/12/2022",
+        caption: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
+        image: "https://picsum.photos/600/300",
+        likes: 22,
+    },
+    {
+        id: 2,
+        nicknameAuthor: "Stefano Russo",
+        proPicAuthor: "",
+        date: "04/10/2022",
+        caption: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
+        image: "",
+        likes: 275,
+    },
+    {
+        id: 3,
+        nicknameAuthor: "Matteo Gramegna",
+        proPicAuthor: "https://picsum.photos/350",
+        date: "04/07/2022",
+        caption: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
+        image: "",
+        likes: 184,
+    },
+    {
+        id: 4,
+        nicknameAuthor: "Lucia Verdi",
+        proPicAuthor: "",
+        date: "03/31/2022",
+        caption: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
+        image: "https://picsum.photos/600/400",
+        likes: 98,
+    },
+    {
+        id: 5,
+        nicknameAuthor: "Clara Bianchi",
+        proPicAuthor: "https://picsum.photos/90",
+        date: "03/27/2022",
+        caption: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
+        image: "https://picsum.photos/600/350",
+        likes: 67,
+    },
 ];
 
 //console.log(posts);
@@ -82,20 +77,20 @@ generatePosts(posts, ".container");
  * @param {string} containerSelector a string to select the container of the posts
  */
 function generatePosts(list, containerSelector) {
-  // 1. inizializzare la variabile per l'elemento della dom in cui
-  //      verrà inserito il post
-  const containerElement = document.querySelector(containerSelector);
-  // 2. ciclare l'array per lavorare su ogni singolo post
-  list.forEach((element) => {
-    // 3. creare la card del post
-    const italianDate = dateFormatter(element.date);
-    let propicContainerElement = "";
-    if (element.proPicAuthor === "") {
-      propicContainerElement = generateFallback(element.nicknameAuthor);
-    }
+    // 1. inizializzare la variabile per l'elemento della dom in cui
+    //      verrà inserito il post
+    const containerElement = document.querySelector(containerSelector);
+    // 2. ciclare l'array per lavorare su ogni singolo post
+    list.forEach((element) => {
+        // 3. creare la card del post
+        const italianDate = dateFormatter(element.date);
+        let propicContainerElement = "";
+        if (element.proPicAuthor === "") {
+            propicContainerElement = generateFallback(element.nicknameAuthor);
+        }
 
-    //console.log(italianDate);
-    const cardElement = `
+        //console.log(italianDate);
+        const cardElement = `
               <div class="card">
                   <div class="author"> 
                     <div class="propic_container">
@@ -122,14 +117,14 @@ function generatePosts(list, containerSelector) {
                       </div>
                   </div>
               </div>`;
-    // 4. appendere le card nel container
-    containerElement.insertAdjacentHTML("beforeend", cardElement);
-  });
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card, i) => {
-    card.postId = list[i].id;
-  });
-  //console.log(cards);
+        // 4. appendere le card nel container
+        containerElement.insertAdjacentHTML("beforeend", cardElement);
+    });
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card, i) => {
+        card.postId = list[i].id;
+    });
+    //console.log(cards);
 }
 
 /*
@@ -146,35 +141,35 @@ const postLiked = likeAPost(".card");
  * @returns {array} a list of posts liked
  */
 function likeAPost(postSelector) {
-  let postLiked = [];
-  const cards = document.querySelectorAll(postSelector);
-  //console.log(cards);
-  cards.forEach((card) => {
-    //console.log(card.children[3].children[0].children[0]);
-    const btnlike = card.children[3].children[0].children[0];
-    //console.log(card.children[3].children[1].children[0].children[0]);
-    const likeCounter = card.children[3].children[1].children[0].children[0];
-    const id = card.postId;
-    //console.log(typeof id);
-    btnlike.addEventListener("click", (e) => {
-      //console.log("hai cliccato like");
-      //console.log(btn);
-      //console.log(id);
-      if (!postLiked.includes(id)) {
-        btnlike.classList.add("liked");
-        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
-        postLiked.push(id);
-      } else {
-        btnlike.classList.remove("liked");
-        //console.log(likeCounter.innerHTML);
-        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) - 1;
-        //console.log(likeCounter.innerHTML);
-        postLiked = postLiked.filter((number) => number !== id);
-      }
-      console.log(postLiked);
+    let postLiked = [];
+    const cards = document.querySelectorAll(postSelector);
+    //console.log(cards);
+    cards.forEach((card) => {
+        //console.log(card.children[3].children[0].children[0]);
+        const btnlike = card.children[3].children[0].children[0];
+        //console.log(card.children[3].children[1].children[0].children[0]);
+        const likeCounter = card.children[3].children[1].children[0].children[0];
+        const id = card.postId;
+        //console.log(typeof id);
+        btnlike.addEventListener("click", (e) => {
+            //console.log("hai cliccato like");
+            //console.log(btn);
+            //console.log(id);
+            if (!postLiked.includes(id)) {
+                btnlike.classList.add("liked");
+                likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
+                postLiked.push(id);
+            } else {
+                btnlike.classList.remove("liked");
+                //console.log(likeCounter.innerHTML);
+                likeCounter.innerHTML = parseInt(likeCounter.innerHTML) - 1;
+                //console.log(likeCounter.innerHTML);
+                postLiked = postLiked.filter((number) => number !== id);
+            }
+            console.log(postLiked);
+        });
     });
-  });
-  return postLiked;
+    return postLiked;
 }
 
 /*
@@ -187,11 +182,11 @@ Formattare le date in formato italiano (gg/mm/aaaa)
  * @param {string} dateString a string that rapresents a date
  */
 function dateFormatter(dateString) {
-  const mm = dateString.split("/")[0];
-  //console.log(mm);
-  const dd = dateString.split("/")[1];
-  const yyyy = dateString.split("/")[2];
-  return (newdate = `${dd}/${mm}/${yyyy}`);
+    const mm = dateString.split("/")[0];
+    //console.log(mm);
+    const dd = dateString.split("/")[1];
+    const yyyy = dateString.split("/")[2];
+    return (newdate = `${dd}/${mm}/${yyyy}`);
 }
 //const date = "03/31/2022";
 //console.log(dateFormatter(date));
@@ -203,10 +198,10 @@ che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 */
 // creo una funzione che genera l'elemento di fallback
 function generateFallback(stringNickname) {
-  const initialFirstname = stringNickname.split(" ")[0].slice(0, 1);
-  const initialSurname = stringNickname.split(" ")[1].slice(0, 1);
-  const propic = initialFirstname + " " + initialSurname;
-  return propic;
+    const initialFirstname = stringNickname.split(" ")[0].slice(0, 1);
+    const initialSurname = stringNickname.split(" ")[1].slice(0, 1);
+    const propic = initialFirstname + " " + initialSurname;
+    return propic;
 }
 
 /* 
