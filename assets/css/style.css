@@ -14,6 +14,7 @@ img {
 
 body {
   background-color: cornflowerblue;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -55,6 +56,16 @@ body {
 
 .date {
   font-size: 0.75rem;
+}
+
+.propic_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  font-weight: bold;
 }
 
 .propic_container img {

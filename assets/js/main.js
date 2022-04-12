@@ -18,7 +18,7 @@ const posts = [
   {
     id: 1,
     nicknameAuthor: "Mirko Orlando",
-    proPicAuthor: "https://picsum.photos/300",
+    proPicAuthor: "",
     date: "04/12/2022",
     caption:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibu corrupti ad mollitia minima, placeat vel maxime perspiciatis, alias velit quasi, doloribus aliquid doloremque sint at ea impedit voluptates repellat voluptatum.",
@@ -89,13 +89,19 @@ function generatePosts(list, containerSelector) {
   list.forEach((element) => {
     // 3. creare la card del post
     const italianDate = dateFormatter(element.date);
-    console.log(italianDate);
+    let propicContainerElement = "";
+    if (element.proPicAuthor === "") {
+      propicContainerElement = generateFallback(element.nicknameAuthor);
+    }
+
+    //console.log(italianDate);
     const cardElement = `
               <div class="card">
-                  <div class="author">
-                      <div class="propic_container">
-                          <img src="${element.proPicAuthor}" alt="" />
-                      </div>   
+                  <div class="author"> 
+                    <div class="propic_container">
+                        <img src="${element.proPicAuthor}" alt="" />
+                        ${propicContainerElement}
+                    </div>
                       <div class="nickname_container">
                           <div class="nickname">${element.nicknameAuthor}</div>
                           <div class="date">${italianDate}</div>
@@ -176,7 +182,7 @@ Formattare le date in formato italiano (gg/mm/aaaa)
  */
 function dateFormatter(dateString) {
   const mm = dateString.split("/")[0];
-  console.log(mm);
+  //console.log(mm);
   const dd = dateString.split("/")[1];
   const yyyy = dateString.split("/")[2];
   return (newdate = `${dd}/${mm}/${yyyy}`);
@@ -189,6 +195,14 @@ BONUS 2
 Gestire l'assenza dell'immagine profilo con un elemento di fallback 
 che contiene le iniziali dell'utente (es. Luca Formicola > LF). 
 */
+// creo una funzione che genera l'elemento di fallback
+function generateFallback(stringNickname) {
+  const initialFirstname = stringNickname.split(" ")[0].slice(0, 1);
+  const initialSurname = stringNickname.split(" ")[1].slice(0, 1);
+  const propic = initialFirstname + " " + initialSurname;
+  return propic;
+}
+
 /* 
 BONUS 3
 Al click su un pulsante "Mi Piace" di un post, 
