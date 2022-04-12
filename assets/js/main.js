@@ -146,7 +146,7 @@ const postLiked = likeAPost(".card");
  * @returns {array} a list of posts liked
  */
 function likeAPost(postSelector) {
-  const postLiked = [];
+  let postLiked = [];
   const cards = document.querySelectorAll(postSelector);
   //console.log(cards);
   cards.forEach((card) => {
@@ -159,11 +159,17 @@ function likeAPost(postSelector) {
     btnlike.addEventListener("click", (e) => {
       //console.log("hai cliccato like");
       //console.log(btn);
-      btnlike.classList.add("liked");
-      likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
       //console.log(id);
       if (!postLiked.includes(id)) {
+        btnlike.classList.add("liked");
+        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
         postLiked.push(id);
+      } else {
+        btnlike.classList.remove("liked");
+        //console.log(likeCounter.innerHTML);
+        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) - 1;
+        //console.log(likeCounter.innerHTML);
+        postLiked = postLiked.filter((number) => number !== id);
       }
       console.log(postLiked);
     });
