@@ -67,7 +67,7 @@ const posts = [
   },
 ];
 
-console.log(posts);
+//console.log(posts);
 
 /* 
 Milestone 2
@@ -130,38 +130,28 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
 del bottone e incrementiamo il counter dei likes relativo. 
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
-const postLiked = [];
+let postLiked = [];
 const cards = document.querySelectorAll(".card");
-console.log(cards);
+//console.log(cards);
 cards.forEach((card) => {
   //console.log(card.children[3].children[0].children[0]);
   const btnlike = card.children[3].children[0].children[0];
   //console.log(card.children[3].children[1].children[0].children[0]);
   const likeCounter = card.children[3].children[1].children[0].children[0];
   const id = card.postId;
-  console.log(typeof id);
+  //console.log(typeof id);
   btnlike.addEventListener("click", (e) => {
     //console.log("hai cliccato like");
     //console.log(btn);
     btnlike.classList.add("liked");
     likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
-    console.log(id);
-    postLiked.push[id];
+    //console.log(id);
+    if (!postLiked.includes(id)) {
+      postLiked.push(id);
+    }
     console.log(postLiked);
   });
 });
-
-/* const btnLikeElement = document.querySelectorAll(".btn_like");
-console.log(btnLikeElement);
-btnLikeElement.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    //console.log("hai cliccato like");
-    //console.log(btn);
-    btn.classList.add("liked");
-    const likes = document.querySelector(".n_likes");
-    likes.innerHTML = parseInt(likes.innerHTML) + 1;
-  });
-}); */
 
 /* 
 BONUS
