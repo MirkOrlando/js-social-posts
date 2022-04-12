@@ -139,6 +139,7 @@ cards.forEach((card) => {
   //console.log(card.children[3].children[1].children[0].children[0]);
   const likeCounter = card.children[3].children[1].children[0].children[0];
   const id = card.postId;
+  console.log(typeof id);
   btnlike.addEventListener("click", (e) => {
     //console.log("hai cliccato like");
     //console.log(btn);
@@ -146,6 +147,7 @@ cards.forEach((card) => {
     likeCounter.innerHTML = parseInt(likeCounter.innerHTML) + 1;
     console.log(id);
     postLiked.push[id];
+    console.log(postLiked);
   });
 });
 
