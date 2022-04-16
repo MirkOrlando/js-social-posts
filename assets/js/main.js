@@ -133,14 +133,14 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
 del bottone e incrementiamo il counter dei likes relativo. 
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
-const postLiked = likeAPost(".card");
+const postLiked = handleClickLike(".card");
 
 /**
  *
  * @param {string} postSelector a string to select the post to like
  * @returns {array} a list of posts liked
  */
-function likeAPost(postSelector) {
+function handleClickLike(postSelector) {
     let postLiked = [];
     const cards = document.querySelectorAll(postSelector);
     //console.log(cards);
@@ -166,7 +166,7 @@ function likeAPost(postSelector) {
                 //console.log(likeCounter.innerHTML);
                 postLiked = postLiked.filter((number) => number !== id);
             }
-            console.log(postLiked);
+            //console.log(postLiked);
         });
     });
     return postLiked;
